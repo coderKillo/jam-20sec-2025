@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddgiriffdnjnw"]
+
+[ext_resource type="PackedScene" uid="uid://b0is2p278ixvm" path="res://2d_prototyp/car_body.tscn" id="1_snd82"]
+[ext_resource type="Script" uid="uid://bwodjbm1bqyxx" path="res://2d_prototyp/scripts/player_controller.gd" id="3_yfjua"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Car" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(-158, 3)
+rotation = 1.5708
+max_contacts_reported = 20
+
+[node name="Car3" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(110, -2)
+
+[node name="Car4" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(74, 4)
+
+[node name="Car5" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(95, 32)
+
+[node name="Car6" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(102, -42)
+
+[node name="Car7" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(126, 30)
+
+[node name="Car8" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(113, 70)
+
+[node name="Car9" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(127, -60)
+
+[node name="Car10" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(148, 23)
+
+[node name="Car11" parent="." instance=ExtResource("1_snd82")]
+position = Vector2(147, -11)
+push_back_on_collision = 0.3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlayerController" type="Node2D" parent="." node_paths=PackedStringArray("car")]
+script = ExtResource("3_yfjua")
+car = NodePath("../Car")

@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0is2p278ixvm"]
+
+[ext_resource type="Script" uid="uid://3xeh10omsmmt" path="res://2d_prototyp/scripts/vehicle.gd" id="1_cw2ik"]
+[ext_resource type="Texture2D" uid="uid://brhocfjasoamm" path="res://icon.svg" id="2_cdcvh"]
+[ext_resource type="Script" uid="uid://dh4r55w7s8epj" path="res://2d_prototyp/scripts/wheel.gd" id="3_3n1q6"]
+[ext_resource type="Script" uid="uid://bet8wyf4lcqh2" path="res://2d_prototyp/scripts/explosion.gd" id="4_jg08j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y6fm3"]
+friction = 0.5
+bounce = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snd82"]
+size = Vector2(10, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hn4pb"]
+radius = 40.0
+
+[node name="Car" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_y6fm3")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 30
+linear_damp_mode = 1
+linear_damp = 1.0
+angular_damp_mode = 1
+angular_damp = 0.1
+script = ExtResource("1_cw2ik")
+health = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.09, 0.18)
+texture = ExtResource("2_cdcvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_snd82")
+
+[node name="Wheel" type="Node2D" parent="."]
+position = Vector2(5, 9)
+script = ExtResource("3_3n1q6")
+max_angle = 15.0
+power = 2.0
+metadata/_custom_type_script = "uid://dh4r55w7s8epj"
+
+[node name="Wheel2" type="Node2D" parent="."]
+position = Vector2(-5, 9)
+script = ExtResource("3_3n1q6")
+max_angle = 15.0
+power = 2.0
+metadata/_custom_type_script = "uid://dh4r55w7s8epj"
+
+[node name="Wheel3" type="Node2D" parent="."]
+position = Vector2(5, -9)
+script = ExtResource("3_3n1q6")
+is_steering = true
+max_angle = 15.0
+power = 2.0
+metadata/_custom_type_script = "uid://dh4r55w7s8epj"
+
+[node name="Wheel4" type="Node2D" parent="."]
+position = Vector2(-5, -9)
+script = ExtResource("3_3n1q6")
+is_steering = true
+max_angle = 15.0
+power = 2.0
+metadata/_custom_type_script = "uid://dh4r55w7s8epj"
+
+[node name="Explosion" type="Area2D" parent="."]
+script = ExtResource("4_jg08j")
+explosion_power = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
+shape = SubResource("CircleShape2D_hn4pb")
+debug_color = Color(0.96541, 0.106844, 0.389815, 0.42)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0dbck5s4uehj"]
+
+[ext_resource type="Script" uid="uid://blne4n1qc18ks" path="res://2d_prototyp/scripts/car_controller.gd" id="1_qq7rx"]
+[ext_resource type="Texture2D" uid="uid://brhocfjasoamm" path="res://icon.svg" id="2_yeb04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6xjj"]
+size = Vector2(20, 10)
+
+[node name="Car" type="CharacterBody2D"]
+script = ExtResource("1_qq7rx")
+max_engine_power = 600
+max_steering_degrees = 25
+slip_speed = 50
+wheel_base = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.18, 0.09)
+texture = ExtResource("2_yeb04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v6xjj")
