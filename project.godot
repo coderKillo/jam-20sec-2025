@@ -24,6 +24,10 @@ SceneManager="*res://base/autoload/scene_manager.gd"
 AppConfig="*res://base/autoload/app_config.gd"
 Screenshot="*res://base/autoload/screenshot.gd"
 
+[debug_draw_3d]
+
+settings/addon_root_folder="res://addons/debug_draw_3d"
+
 [display]
 
 window/size/viewport_width=640
