@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://s2os6ha3rkxh"
+path="res://.godot/imported/debris-drivetrain-axle.obj-0d6865ccd24096335d39f3d5c559478f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/debris-drivetrain-axle.obj-0d6865ccd24096335d39f3d5c559478f.mesh"]
+
+source_file="res://assets/models/kenney_car-kit/Models/OBJ format/debris-drivetrain-axle.obj"
+dest_files=["res://.godot/imported/debris-drivetrain-axle.obj-0d6865ccd24096335d39f3d5c559478f.mesh", "res://.godot/imported/debris-drivetrain-axle.obj-0d6865ccd24096335d39f3d5c559478f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
