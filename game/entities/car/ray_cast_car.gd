@@ -6,25 +6,24 @@ extends RigidBody3D
 @export var max_speed := 20.0
 @export var acceleration := 600.0
 @export var acceleration_curve: Curve
+@export var center_of_mass_offset := 1.0
 
 var motor_input := 0.0
 var turn_input := 0.0
 var brake := false
 
 
+func _ready():
+	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
+
+
 func _physics_process(_delta):
 	for wheel in wheels:
 		wheel.turn(turn_input)
-		if brake and wheel.is_motor:
-			wheel.wheel_traction.x = 0.1
-		else:
-			wheel.wheel_traction.x = 0.7
-
 		wheel.process_car_physic(motor_input, _get_wheel_accleration(wheel.forward_velocity()))
 
 	if wheels.any(func(wheel): return wheel.is_grounded):
-		center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
-		center_of_mass = Vector3.DOWN * 1.0
+		center_of_mass = Vector3.DOWN * center_of_mass_offset
 	else:
 		center_of_mass = Vector3.ZERO
 

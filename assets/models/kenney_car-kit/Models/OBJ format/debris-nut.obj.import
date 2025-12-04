@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ddnnki40ijaoj"
+path="res://.godot/imported/debris-nut.obj-17fa5d71467e3e6e8d00bdd00a7c554f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/debris-nut.obj-17fa5d71467e3e6e8d00bdd00a7c554f.mesh"]
+
+source_file="res://assets/models/kenney_car-kit/Models/OBJ format/debris-nut.obj"
+dest_files=["res://.godot/imported/debris-nut.obj-17fa5d71467e3e6e8d00bdd00a7c554f.mesh", "res://.godot/imported/debris-nut.obj-17fa5d71467e3e6e8d00bdd00a7c554f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

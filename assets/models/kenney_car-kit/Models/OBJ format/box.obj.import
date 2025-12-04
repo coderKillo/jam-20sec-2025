@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cg1rq7yyxv8ua"
+path="res://.godot/imported/box.obj-2d0427b551aa14d51880e828a11face9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/box.obj-2d0427b551aa14d51880e828a11face9.mesh"]
+
+source_file="res://assets/models/kenney_car-kit/Models/OBJ format/box.obj"
+dest_files=["res://.godot/imported/box.obj-2d0427b551aa14d51880e828a11face9.mesh", "res://.godot/imported/box.obj-2d0427b551aa14d51880e828a11face9.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
