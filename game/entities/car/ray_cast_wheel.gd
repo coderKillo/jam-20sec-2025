@@ -7,7 +7,7 @@ extends RayCast3D
 @export_category("Wheel Settings")
 @export var wheel_radius := 0.4
 @export var wheel_turn_degrees := 25.0
-@export var wheel_turn_speed := 100.0
+@export var wheel_turn_speed := 50.0
 @export var wheel_traction := Vector2(0.7, 0.05)
 
 @export_category("Spring Settings")
@@ -33,11 +33,12 @@ func turn(turn_input: float):
 		return
 
 	var turn_delta = wheel_turn_speed * get_physics_process_delta_time()
+	var target_angle = 0
 	if turn_input:
-		var angle = rotation_degrees.y + turn_input * turn_delta
-		rotation_degrees.y = clampf(angle, -wheel_turn_degrees, wheel_turn_degrees)
-	else:
-		rotation_degrees.y = move_toward(rotation_degrees.y, 0, turn_delta)
+		target_angle = -turn_input * wheel_turn_degrees
+
+	var angle = move_toward(rotation_degrees.y, target_angle, turn_delta)
+	rotation_degrees.y = clampf(angle, -wheel_turn_degrees, wheel_turn_degrees)
 
 
 func process_car_physic(motor_input: float, acceleration: float):

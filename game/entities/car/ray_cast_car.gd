@@ -4,6 +4,7 @@ extends RigidBody3D
 @export var wheels: Array[RayCastWheel]
 
 @export var max_speed := 20.0
+@export var turn_degrees := 15.0
 @export var acceleration := 600.0
 @export var acceleration_curve: Curve
 @export var center_of_mass_offset := 1.0
@@ -16,6 +17,10 @@ var brake := false
 func _ready():
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 
+	for wheel in wheels:
+		if wheel.is_turning:
+			wheel.wheel_turn_degrees = turn_degrees
+
 
 func _physics_process(_delta):
 	for wheel in wheels:
@@ -26,6 +31,18 @@ func _physics_process(_delta):
 		center_of_mass = Vector3.DOWN * center_of_mass_offset
 	else:
 		center_of_mass = Vector3.ZERO
+
+
+func get_average_wheel_angle() -> float:
+	var angle := 0.0
+	var count := 0.0
+
+	for wheel in wheels:
+		if wheel.is_turning:
+			angle += wheel.rotation_degrees.y
+			count += 1.0
+
+	return angle / count
 
 
 func _get_wheel_accleration(speed: float) -> float:

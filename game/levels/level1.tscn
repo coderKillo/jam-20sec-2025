@@ -1,25 +1,21 @@
-[gd_scene load_steps=26 format=4 uid="uid://7eh1kmaickso"]
+[gd_scene load_steps=25 format=4 uid="uid://7eh1kmaickso"]
 
 [ext_resource type="Script" uid="uid://gi24plob2g5t" path="res://game/levels/level.gd" id="1_ic1hw"]
-[ext_resource type="PackedScene" uid="uid://bif7ilhiuqhq1" path="res://game/world/objects/ramp.tscn" id="2_ofauc"]
-[ext_resource type="Material" uid="uid://bx6qeabdhq2s" path="res://addons/kenney_prototype_tools/materials/dark/material_01.tres" id="2_uom3c"]
-[ext_resource type="Script" uid="uid://cih62yg30k71g" path="res://game/entities/car/ray_cast_car.gd" id="4_01suh"]
 [ext_resource type="Script" uid="uid://ct0wfkng0uvkm" path="res://game/entities/player/player.gd" id="4_ofauc"]
 [ext_resource type="Script" uid="uid://b2cq3p2qqcr55" path="res://game/entities/car/ray_cast_wheel.gd" id="5_01suh"]
 [ext_resource type="Script" uid="uid://dfy45k1bw62mm" path="res://game/world/camera/follow_camera.gd" id="5_blj8w"]
 [ext_resource type="Curve" uid="uid://drlvneshdn3u5" path="res://game/entities/car/curves/default_acceleration.tres" id="5_e7nd3"]
 [ext_resource type="Texture2D" uid="uid://bnuxvk1tci1be" path="res://assets/models/kenney_car-kit/Models/FBX format/Textures/colormap.png" id="6_asq6h"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_psvgy"]
-size = Vector3(1000, 1, 1000)
-
-[sub_resource type="BoxMesh" id="BoxMesh_orukj"]
+[ext_resource type="PackedScene" uid="uid://sc7luka4o5l2" path="res://game/entities/ai/ai_car.tscn" id="6_s721g"]
+[ext_resource type="Material" uid="uid://dm157s57mfhfe" path="res://addons/kenney_prototype_tools/materials/dark/material_02.tres" id="8_e7nd3"]
+[ext_resource type="PackedScene" uid="uid://57mx3766ieox" path="res://game/world/city/street/road_straigt_long.tscn" id="9_asq6h"]
+[ext_resource type="Script" uid="uid://cs8uiydfrswuq" path="res://game/entities/ai/ai_car_manager.gd" id="10_s721g"]
 
 [sub_resource type="Environment" id="Environment_uom3c"]
 background_color = Color(0.723602, 0.531677, 0.804231, 1)
 background_energy_multiplier = 0.16
 ambient_light_source = 3
-ambient_light_color = Color(0.887178, 0.000692313, 0.897721, 1)
+ambient_light_color = Color(7.70092e-07, 0.5786, 0.907807, 1)
 ambient_light_energy = 0.33
 reflected_light_source = 2
 
@@ -208,30 +204,8 @@ shadow_mesh = SubResource("ArrayMesh_ihorn")
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_ic1hw")
 
-[node name="Ramp" parent="." instance=ExtResource("2_ofauc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.85437, -11.3757)
-
-[node name="Ramp2" parent="." instance=ExtResource("2_ofauc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.85437, -26.6908)
-
-[node name="Ramp3" parent="." instance=ExtResource("2_ofauc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.58239, 2.13056, -11.3757)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999979, -0.00644022, 0, 0.00644022, 0.999979, 0, 0.950944, 14.7482)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_psvgy")
-
-[node name="Mesh" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1000, 0, 0, 0, 1, 9.31323e-07, 0, -9.31323e-10, 1000, 0, 0, 0)
-material_override = ExtResource("2_uom3c")
-mesh = SubResource("BoxMesh_orukj")
-skeleton = NodePath("")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.636172, 3.37254e-08, -0.771547, 0.771547, -2.7808e-08, 0.636172, 0, -1, -4.37114e-08, -42.9844, 27.732, 7.33537)
-light_color = Color(0.53, 0.663167, 1, 1)
 shadow_enabled = true
 shadow_opacity = 0.53
 directional_shadow_mode = 0
@@ -240,7 +214,7 @@ directional_shadow_mode = 0
 environment = SubResource("Environment_uom3c")
 
 [node name="Vehicle" type="RigidBody3D" parent="." node_paths=PackedStringArray("wheels")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64996, 5.9818, 0.14122)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -180.533, 1.64547, -3.67158)
 mass = 25.0
 center_of_mass_mode = 1
 script = ExtResource("4_ofauc")
@@ -328,98 +302,63 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 mesh = SubResource("ArrayMesh_poaok")
 skeleton = NodePath("")
 
-[node name="Vehicle2" type="RigidBody3D" parent="." node_paths=PackedStringArray("wheels")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57777, 5.9818, 0.14122)
-mass = 25.0
-center_of_mass_mode = 1
-script = ExtResource("4_01suh")
-wheels = [NodePath("WheelFrontLeft"), NodePath("WheelFrontRight"), NodePath("WheelBackLeft"), NodePath("WheelBackRight")]
-max_speed = 30.0
-acceleration = 400.0
-acceleration_curve = ExtResource("5_e7nd3")
-center_of_mass_offset = 0.5
+[node name="AiCar" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -281.843, 1.64547, 35.7907)
+visible = false
 
-[node name="body" type="MeshInstance3D" parent="Vehicle2"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.188257, 0.00194201)
-mesh = SubResource("ArrayMesh_o20dd")
-skeleton = NodePath("")
+[node name="AiCar2" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -274.683, 1.64547, -65.502)
+visible = false
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Vehicle2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00195026, 0.376966, 0.37242)
-shape = SubResource("BoxShape3D_01suh")
+[node name="AiCar3" parent="." instance=ExtResource("6_s721g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -278.268, 1.64547, -62.8447)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Vehicle2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0289035, 0.158442, 0.026942)
-shape = SubResource("BoxShape3D_3y0nw")
-debug_color = Color(0.9, 0.198, 0.5724, 1)
+[node name="AiCar4" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -295.213, 1.64547, 81.1713)
+visible = false
 
-[node name="WheelFrontLeft" type="RayCast3D" parent="Vehicle2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447025, 0, -0.834033)
-enabled = false
-target_position = Vector3(0, -0.5, 0)
-script = ExtResource("5_01suh")
-is_turning = true
-wheel_radius = 0.3
-wheel_turn_degrees = 15.0
-wheel_traction = Vector2(0.5, 0.05)
-spring_rest_len = 0.1
-spring_over_extend = 0.05
+[node name="AiCar5" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -290.423, 1.64547, 78.514)
+visible = false
 
-[node name="wheel-front-left" type="MeshInstance3D" parent="Vehicle2/WheelFrontLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-mesh = SubResource("ArrayMesh_haq4u")
-skeleton = NodePath("")
+[node name="AiCar6" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -259.158, 1.64547, -80.428)
+visible = false
 
-[node name="WheelFrontRight" type="RayCast3D" parent="Vehicle2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.448464, 0, -0.834033)
-enabled = false
-target_position = Vector3(0, -0.5, 0)
-script = ExtResource("5_01suh")
-is_turning = true
-wheel_radius = 0.3
-wheel_turn_degrees = 15.0
-wheel_traction = Vector2(0.5, 0.05)
-spring_rest_len = 0.1
-spring_over_extend = 0.05
+[node name="AiCar7" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -262.743, 1.64547, 0.322351)
+visible = false
 
-[node name="wheel-front-right" type="MeshInstance3D" parent="Vehicle2/WheelFrontRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-mesh = SubResource("ArrayMesh_n6y5a")
-skeleton = NodePath("")
+[node name="AiCar8" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -255.583, 1.64547, 52.4227)
+visible = false
 
-[node name="WheelBackLeft" type="RayCast3D" parent="Vehicle2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447025, 0, 0.769244)
-enabled = false
-target_position = Vector3(0, -0.58, 0)
-script = ExtResource("5_01suh")
-is_motor = true
-wheel_radius = 0.3
-wheel_turn_degrees = 15.0
-wheel_traction = Vector2(0.5, 0.05)
-spring_rest_len = 0.1
-spring_over_extend = 0.05
+[node name="AiCar9" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -250.182, 1.64547, -40.2237)
+visible = false
 
-[node name="wheel-back-left" type="MeshInstance3D" parent="Vehicle2/WheelBackLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-mesh = SubResource("ArrayMesh_2ewep")
-skeleton = NodePath("")
+[node name="AiCar10" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -243.022, 1.64547, -2.33495)
+visible = false
 
-[node name="WheelBackRight" type="RayCast3D" parent="Vehicle2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.448464, 0, 0.769244)
-enabled = false
-target_position = Vector3(0, -0.5, 0)
-script = ExtResource("5_01suh")
-is_motor = true
-wheel_radius = 0.3
-wheel_turn_degrees = 15.0
-wheel_traction = Vector2(0.5, 0.05)
-spring_rest_len = 0.1
-spring_over_extend = 0.05
+[node name="AiCar11" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -246.607, 1.64547, 30.5618)
+visible = false
 
-[node name="wheel-back-right" type="MeshInstance3D" parent="Vehicle2/WheelBackRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-mesh = SubResource("ArrayMesh_poaok")
-skeleton = NodePath("")
+[node name="AiCar12" parent="." instance=ExtResource("6_s721g")]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -239.447, 1.64547, 79.9664)
+visible = false
 
 [node name="FollowCamera" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69936, 4.44491, 0)
@@ -432,3 +371,43 @@ follow_target = NodePath("../Vehicle")
 
 [node name="Camera3D" type="Camera3D" parent="FollowCamera/Pivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+use_collision = true
+size = Vector3(1000, 0.1, 1000)
+material = ExtResource("8_e7nd3")
+
+[node name="Road" type="Node3D" parent="World"]
+
+[node name="RoadStraigt" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+
+[node name="RoadStraigt2" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -1)
+
+[node name="RoadStraigt3" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -1)
+
+[node name="RoadStraigt7" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123, 0, -1)
+
+[node name="RoadStraigt8" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 0, -1)
+
+[node name="RoadStraigt9" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163, 0, -1)
+
+[node name="RoadStraigt4" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117, 0, -1)
+
+[node name="RoadStraigt5" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157, 0, -1)
+
+[node name="RoadStraigt6" parent="World/Road" instance=ExtResource("9_asq6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77, 0, -1)
+
+[node name="AiCarManager" type="Node3D" parent="."]
+script = ExtResource("10_s721g")
