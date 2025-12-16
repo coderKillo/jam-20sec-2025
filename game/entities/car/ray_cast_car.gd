@@ -13,6 +13,9 @@ var motor_input := 0.0
 var turn_input := 0.0
 var brake := false
 
+var _turning_wheels: Array[RayCastWheel]
+var _motor_wheels: Array[RayCastWheel]
+
 
 func _ready():
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
@@ -20,6 +23,9 @@ func _ready():
 	for wheel in wheels:
 		if wheel.is_turning:
 			wheel.wheel_turn_degrees = turn_degrees
+			_turning_wheels.append(wheel)
+		if wheel.is_motor:
+			_motor_wheels.append(wheel)
 
 
 func _physics_process(_delta):
@@ -34,15 +40,7 @@ func _physics_process(_delta):
 
 
 func get_average_wheel_angle() -> float:
-	var angle := 0.0
-	var count := 0.0
-
-	for wheel in wheels:
-		if wheel.is_turning:
-			angle += wheel.rotation_degrees.y
-			count += 1.0
-
-	return angle / count
+	return Math.average(_turning_wheels, "rotation_degrees:y")
 
 
 func _get_wheel_accleration(speed: float) -> float:
