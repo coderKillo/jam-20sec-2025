@@ -7,7 +7,7 @@ extends Node3D
 
 @onready var car: RayCastCar = get_parent()
 
-var target_position: Vector3
+var target_checkpoint: Checkpoint
 var speed: float
 
 var _intrests: Array[RayCast3D]
@@ -35,14 +35,18 @@ func _process(_delta):
 
 
 func is_on_goal_position() -> bool:
-	return global_position.distance_to(target_position) < distance_to_goal_tolerance
+	return (
+		global_position.distance_to(target_checkpoint.global_position) < distance_to_goal_tolerance
+	)
 
 
 # return car input, x = motor, y = steering
 func _get_input() -> Vector2:
 	var input := Vector2.ZERO
 
-	var to_target: Vector3 = (target_position - car.global_transform.origin).normalized()
+	var to_target: Vector3 = (
+		(target_checkpoint.global_position - car.global_transform.origin).normalized()
+	)
 
 	# calculate where to drive
 	var intrest_vector := Vector3.ZERO
@@ -57,6 +61,7 @@ func _get_input() -> Vector2:
 
 	input.y = _get_steering(intrest_vector.normalized())
 
+	# TODO: refactor
 	if _distance_checker.is_colliding():
 		var collider_velocity := Vector3.ZERO
 		var collider := _distance_checker.get_collider() as RigidBody3D

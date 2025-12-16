@@ -13,7 +13,7 @@ config_version=5
 config/name="Jam-Template"
 config/description="s"
 config/version="0.0.1"
-run/main_scene="uid://ddgiriffdnjnw"
+run/main_scene="uid://7eh1kmaickso"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -40,6 +40,7 @@ window/stretch/mode="canvas_items"
 
 ai_car=""
 ai_car_controller=""
+checkpoint=""
 
 [gui]
 
