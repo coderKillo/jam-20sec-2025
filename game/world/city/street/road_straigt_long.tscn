@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://57mx3766ieox"]
+[gd_scene load_steps=11 format=4 uid="uid://57mx3766ieox"]
 
 [ext_resource type="Texture2D" uid="uid://xs8cr3opqaut" path="res://assets/models/kenney_city-kit-roads/Models/GLB format/Textures/colormap.png" id="1_2csae"]
 
@@ -46,6 +46,47 @@ size = Vector3(40, 0.1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxfty"]
 size = Vector3(40, 0.1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_co35w"]
+resource_name = "colormap"
+cull_mode = 2
+albedo_texture = ExtResource("1_2csae")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nxpos"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 0.08, 1),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAwABAAAABAACAAEAAQADAAQAAgAFAAAABQACAAQAAAAGAAMABgAAAAUABAADAAYABQAHAAYABgAHAAQABAAHAAUACAAJAAoACgALAAgACQAIAAwADAAIAAsADQAKAAkACwAKAA0ADAAOAAkACQAOAA0ADQAOAAwACwAPAAwADAAPAA0ADQAPAAsA"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("/////64HAAAAAP//rgcAAAAA//8AAAAAAAAAAMwMAAAAAAAAAAAAAP////8AAAAA//8AAMwMAAD//wAAAAAAAAAAAAD+/wAA/v8AAP//AAD+/wAAMvMAAAAAAAAy8wAAAAD///7/AAD+////UPgAAP7//////wAAAAD//1D4AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pvrg0"]
+resource_name = "road-straight-barrier_road-straight-barrier"
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 0.08, 1),
+"attribute_data": PackedByteArray("/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f/+f/3//n/9//5//f"),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHgAfABwAIAAhACIAIgAjACAAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwA"),
+"material": SubResource("StandardMaterial3D_co35w"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("/////64HVNUAAP//rgdU1QAA//8AAFTV/////wAAVNUAAAAA/v9U1f7/AAD//1TV/v8AADLzVNUAAAAAMvNU1QAAAAAAAFTVAAAAAMwMVNX//wAAzAxU1f//AAAAAFTVAAAAADLz///+/wAAMvP///7///9Q+P//AAD//1D4//8AAP//rgf/vwAAAADMDP+/AAAAAAAA/78AAP//AAD/v/7///9Q+FTV/v//////VNUAAP///v9U1QAA//9Q+FTV/v///1D4/7/+/wAAMvP/v/7/AAD///+//v///////7//////rgf6if//AADMDPqJAAAAAMwM+okAAP//rgf6if////8AAP+///8AAAAA/7///wAAzAz/v/////+uB/+/AAD///7//78AAAAA/v//vwAAAAAy8/+/AAD//1D4/78AAP///v8AgP7//////wCA/v8AAP//AIAAAAAA/v8AgAAAAAAAAP////8AAAAA////////AAD//wAA//8AAP//VNWqKlTVqipU1aoqVNWqKqoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTV/3/38f9/9/H/f/fx/3/38f9/////f////3////9///9U1aoqVNWqKlTVqipU1aoq/38AAP9/AAD/fwAA/38AAP7//3/+//9//v//f/7//3//fwAA/38AAP9/AAD/fwAA/3////9/////f////3////9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_nxpos")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2csae"]
+size = Vector3(40, 0.7, 0.3)
+
 [node name="RoadStraigt" type="StaticBody3D"]
 
 [node name="road-straight" type="MeshInstance3D" parent="."]
@@ -64,3 +105,16 @@ shape = SubResource("BoxShape3D_uxfty")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -4.5)
 shape = SubResource("BoxShape3D_uxfty")
+
+[node name="road-straight-barrier" type="MeshInstance3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("ArrayMesh_pvrg0")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -4.85)
+shape = SubResource("BoxShape3D_2csae")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 4.85)
+shape = SubResource("BoxShape3D_2csae")

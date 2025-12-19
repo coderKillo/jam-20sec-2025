@@ -41,6 +41,7 @@ window/stretch/mode="canvas_items"
 ai_car=""
 ai_car_controller=""
 checkpoint=""
+car_spawn=""
 
 [gui]
 
