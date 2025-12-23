@@ -63,10 +63,6 @@ func _get_input() -> Vector2:
 	input.y = _get_steering(interest_vector.normalized())
 	input.x = _get_speed()
 
-	DebugDraw3D.draw_arrow_ray(
-		car.global_position, interest_vector.normalized(), input.x * 10.0, Color.RED, 0.1, true
-	)
-
 	return input
 
 

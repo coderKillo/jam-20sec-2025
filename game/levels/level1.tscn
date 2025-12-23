@@ -15,6 +15,7 @@ ambient_light_source = 3
 ambient_light_color = Color(7.70092e-07, 0.5786, 0.907807, 1)
 ambient_light_energy = 0.33
 reflected_light_source = 2
+fog_enabled = true
 fog_light_color = Color(0.558616, 0.693363, 0.907367, 1)
 fog_density = 0.1
 
@@ -31,7 +32,7 @@ directional_shadow_mode = 0
 environment = SubResource("Environment_uom3c")
 
 [node name="PlayerCar" parent="." instance=ExtResource("2_ofauc")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -146.352, 1.64546, 1.5955)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -191.352, 1.64546, 1.5955)
 
 [node name="FollowCamera" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("3_ofauc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69936, 4.44491, 0)
@@ -608,21 +609,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -397, 0, 0)
 [node name="RoadStraigt16" parent="World/Road" instance=ExtResource("9_asq6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -437, 0, 0)
 
-[node name="Spawner" type="Node3D" parent="World"]
-
-[node name="Spawn" type="Node3D" parent="World/Spawner" groups=["car_spawn"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.495, 2, 79.0149)
-
-[node name="Spawn2" type="Node3D" parent="World/Spawner" groups=["car_spawn"]]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -133.495, 2, -91.9851)
-
-[node name="Spawn3" type="Node3D" parent="World/Spawner" groups=["car_spawn"]]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -89.8319, 2, -1.31223)
-
-[node name="Spawn4" type="Node3D" parent="World/Spawner" groups=["car_spawn"]]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -75.8319, 2, 1.68777)
-
-[node name="AiCarManager" type="Node3D" parent="." node_paths=PackedStringArray("world")]
+[node name="AiCarManager" type="Node3D" parent="." node_paths=PackedStringArray("world", "car_spawn")]
 script = ExtResource("10_s721g")
-car_amount = 30
 world = NodePath("../World")
+car_spawn = NodePath("../World/Road/Road4Intersection")
