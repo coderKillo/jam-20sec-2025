@@ -36,6 +36,9 @@ environment = SubResource("Environment_uom3c")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69936, 4.44491, 0)
 follow_target = NodePath("../World/PlayerCar")
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.744568, -0.353548, 0.566235, 0, 0.848233, 0.529623, -0.667547, -0.39434, 0.631567, -124.962, 8.66427, 8.52205)
+
 [node name="World" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="World"]
@@ -607,8 +610,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -397, 0, 0)
 [node name="RoadStraigt16" parent="World/Road" instance=ExtResource("9_asq6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -437, 0, 0)
 
-[node name="PlayerCar" parent="World" instance=ExtResource("2_ofauc")]
+[node name="PlayerStart" type="Node3D" parent="World"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -271.139, 1.64546, 1.5955)
+
+[node name="PlayerCar" parent="World" instance=ExtResource("2_ofauc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -246.891, 1.64546, 1.5955)
 turn_degrees = 25.0
 
 [node name="AiCarManager" type="Node3D" parent="." node_paths=PackedStringArray("world", "car_spawn")]
