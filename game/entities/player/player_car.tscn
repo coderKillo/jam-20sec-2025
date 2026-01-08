@@ -188,7 +188,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ihorn")
 
 [node name="PlayerCar" type="RigidBody3D" node_paths=PackedStringArray("wheels")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 mass = 25.0
 center_of_mass_mode = 1
 script = ExtResource("1_fsf16")
@@ -219,7 +218,8 @@ target_position = Vector3(0, -0.5, 0)
 script = ExtResource("4_ac4b2")
 is_turning = true
 wheel_radius = 0.3
-wheel_turn_degrees = 15.0
+wheel_turn_speed = 80.0
+wheel_turn_speed_high = 20.0
 wheel_traction = Vector2(0.5, 0.05)
 spring_rest_len = 0.1
 
@@ -235,7 +235,8 @@ target_position = Vector3(0, -0.5, 0)
 script = ExtResource("4_ac4b2")
 is_turning = true
 wheel_radius = 0.3
-wheel_turn_degrees = 15.0
+wheel_turn_speed = 80.0
+wheel_turn_speed_high = 20.0
 wheel_traction = Vector2(0.5, 0.05)
 spring_rest_len = 0.1
 

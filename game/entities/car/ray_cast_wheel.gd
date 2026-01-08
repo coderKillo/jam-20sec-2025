@@ -7,7 +7,9 @@ extends RayCast3D
 @export_category("Wheel Settings")
 @export var wheel_radius := 0.4
 @export var wheel_turn_degrees := 25.0
+@export var wheel_turn_degrees_high := 5.0
 @export var wheel_turn_speed := 50.0
+@export var wheel_turn_speed_high := 10.0
 @export var wheel_traction := Vector2(0.7, 0.05)
 
 @export_category("Spring Settings")
@@ -32,10 +34,16 @@ func turn(turn_input: float):
 	if not is_turning:
 		return
 
-	var turn_delta = wheel_turn_speed * get_physics_process_delta_time()
+	var normalized_speed = clamp(forward_velocity() / car.max_speed, 0.0, 1.0)
+	var speed_related_turn_degree = lerp(
+		wheel_turn_degrees, wheel_turn_degrees_high, normalized_speed
+	)
+	var speed_related_turn_speed = lerp(wheel_turn_speed, wheel_turn_speed_high, normalized_speed)
+
+	var turn_delta = speed_related_turn_speed * get_physics_process_delta_time()
 	var target_angle = 0
 	if turn_input:
-		target_angle = -turn_input * wheel_turn_degrees
+		target_angle = -turn_input * speed_related_turn_degree
 
 	var angle = move_toward(rotation_degrees.y, target_angle, turn_delta)
 	rotation_degrees.y = clampf(angle, -wheel_turn_degrees, wheel_turn_degrees)

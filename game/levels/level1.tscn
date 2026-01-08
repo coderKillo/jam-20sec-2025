@@ -32,12 +32,9 @@ directional_shadow_mode = 0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uom3c")
 
-[node name="PlayerCar" parent="." instance=ExtResource("2_ofauc")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -191.352, 1.64546, 1.5955)
-
 [node name="FollowCamera" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("3_ofauc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69936, 4.44491, 0)
-follow_target = NodePath("../PlayerCar")
+follow_target = NodePath("../World/PlayerCar")
 
 [node name="World" type="Node3D" parent="."]
 
@@ -609,6 +606,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -397, 0, 0)
 
 [node name="RoadStraigt16" parent="World/Road" instance=ExtResource("9_asq6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -437, 0, 0)
+
+[node name="PlayerCar" parent="World" instance=ExtResource("2_ofauc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -271.139, 1.64546, 1.5955)
+turn_degrees = 25.0
 
 [node name="AiCarManager" type="Node3D" parent="." node_paths=PackedStringArray("world", "car_spawn")]
 script = ExtResource("10_s721g")
