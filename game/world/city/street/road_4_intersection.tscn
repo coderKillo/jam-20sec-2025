@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://dfaep1h3ipi5j"]
+[gd_scene load_steps=14 format=4 uid="uid://dfaep1h3ipi5j"]
 
 [ext_resource type="Texture2D" uid="uid://xs8cr3opqaut" path="res://assets/models/kenney_city-kit-roads/Models/GLB format/Textures/colormap.png" id="1_3b64g"]
+[ext_resource type="Script" uid="uid://b37bnjlgsnjyl" path="res://game/world/city/street/road_4_intersection.gd" id="1_6b24r"]
 [ext_resource type="Script" uid="uid://bj8bv0xyflfau" path="res://game/systems/car_spawn/car_spawner.gd" id="2_0ykb0"]
+[ext_resource type="PackedScene" uid="uid://rklypl80g2tu" path="res://game/world/city/street/traffic_light.tscn" id="2_gq1oy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuh7n"]
 resource_name = "colormap"
@@ -91,6 +93,7 @@ shadow_mesh = SubResource("ArrayMesh_tohgs")
 size = Vector3(0.3, 0.7, 0.3)
 
 [node name="Road4Intersection" type="StaticBody3D"]
+script = ExtResource("1_6b24r")
 
 [node name="road-crossroad-path" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
@@ -138,34 +141,53 @@ shape = SubResource("BoxShape3D_gq1oy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85, 0.45, 4.85)
 shape = SubResource("BoxShape3D_gq1oy")
 
+[node name="TrafficLightLeft" parent="." instance=ExtResource("2_gq1oy")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -6, 0.1, 4.5)
+
+[node name="TrafficLightRight" parent="." instance=ExtResource("2_gq1oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.1, -4.5)
+
+[node name="TrafficLightFront" parent="." instance=ExtResource("2_gq1oy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0.1, -6)
+
+[node name="TrafficLightBack" parent="." instance=ExtResource("2_gq1oy")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 4.5, 0.1, 6)
+
 [node name="CarSpawner1" type="Node3D" parent="." groups=["car_spawn"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, 0)
 script = ExtResource("2_0ykb0")
+active = true
 
 [node name="Lane2" type="RayCast3D" parent="CarSpawner1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, -1.5)
 target_position = Vector3(0, 0, -40)
 
 [node name="CarSpawner2" type="Node3D" parent="." groups=["car_spawn"]]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 6)
 script = ExtResource("2_0ykb0")
+active = true
 
 [node name="Lane2" type="RayCast3D" parent="CarSpawner2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, -1.5)
 target_position = Vector3(0, 0, -40)
 
 [node name="CarSpawner3" type="Node3D" parent="." groups=["car_spawn"]]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5, 0.5, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6, 0.5, 0)
 script = ExtResource("2_0ykb0")
+active = true
 
 [node name="Lane2" type="RayCast3D" parent="CarSpawner3"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, -1.5)
-target_position = Vector3(0, 0, -40)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -1.5)
+target_position = Vector3(0, 0, 40)
 
 [node name="CarSpawner4" type="Node3D" parent="." groups=["car_spawn"]]
-transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, 0, 0.5, -5)
+transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, 0, 0.5, -6)
 script = ExtResource("2_0ykb0")
+active = true
 
 [node name="Lane2" type="RayCast3D" parent="CarSpawner4"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, -1.5)
 target_position = Vector3(0, 0, -40)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

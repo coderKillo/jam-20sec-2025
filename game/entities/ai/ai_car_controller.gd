@@ -47,8 +47,6 @@ func _get_input() -> Vector2:
 	var drive_to: Vector3 = _get_closest_point_on_lane()
 	var to_target: Vector3 = car.global_position.direction_to(drive_to)
 
-	DebugDraw3D.draw_arrow_ray(drive_to + Vector3.UP, Vector3.DOWN, 1.0, Color.RED)
-
 	# calculate where to drive
 	var interest_vector := Vector3.ZERO
 	for interest in _interests:

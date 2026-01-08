@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dfy45k1bw62mm" path="res://game/world/camera/follow_camera.gd" id="1_f3x6c"]
 
-[node name="FollowCamera" type="Node3D" node_paths=PackedStringArray("follow_target")]
+[node name="FollowCamera" type="Node3D"]
 script = ExtResource("1_f3x6c")
-follow_target = NodePath("")
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -12,3 +11,4 @@ follow_target = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="Pivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+far = 80.0

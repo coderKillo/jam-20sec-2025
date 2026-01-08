@@ -15,6 +15,7 @@ ambient_light_source = 3
 ambient_light_color = Color(7.70092e-07, 0.5786, 0.907807, 1)
 ambient_light_energy = 0.33
 reflected_light_source = 2
+glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.558616, 0.693363, 0.907367, 1)
 fog_density = 0.1
@@ -613,3 +614,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -437, 0, 0)
 script = ExtResource("10_s721g")
 world = NodePath("../World")
 car_spawn = NodePath("../World/Road/Road4Intersection")
+spawn_time = 0.2
+
+[node name="Timer" type="Timer" parent="AiCarManager"]

@@ -3,28 +3,26 @@ extends Node3D
 @export var car_amount = 20
 @export var world: Node3D
 @export var car_spawn: Node3D
+@export var spawn_time: float = 1.0
 
 @onready var ai_car_scene := preload("res://game/entities/ai/ai_car.tscn")
 
 var _controllers: Array[AiCarController]
-var _spawn_timer: float = 0.0
 
 
 func _ready():
 	assert(world)
 
+	$Timer.timeout.connect(_on_spawn_timer_timeout)
+	$Timer.start(spawn_time)
 
-func _process(_delta):
+
+func _on_spawn_timer_timeout():
 	if _controllers.size() >= car_amount:
 		return
-	if _spawn_timer < 0.5:
-		_spawn_timer += _delta
-		return
-	_spawn_timer = 0.0
 
 	# for lane_spawn in get_tree().get_nodes_in_group("car_spawn"):
 	# 	_spwan_car(lane_spawn)
-
 	for spawn in car_spawn.find_children("CarSpawner*", "CarSpawnLane"):
 		_spwan_car(spawn)
 
