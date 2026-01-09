@@ -1,14 +1,16 @@
 extends Node3D
 
-@export var car_amount = 20
 @export var world: Node3D
-@export var car_spawn: Node3D
+
+@export_category("Settings")
+@export var car_amount = 20
 @export var spawn_time: float = 1.0
 @export var spawn_distance_in_view: float = 100.0
 @export var spawn_distance_out_of_view: float = 10.0
 @export var spawn_angle_to_player: float = 80.0
 
-@onready var ai_car_scene := preload("res://game/entities/ai/ai_car.tscn")
+@export_category("Database")
+@export var car_db: Array[PackedScene]
 
 var _controllers: Array[AiCarController]
 var _player_car: RayCastCar
@@ -77,7 +79,7 @@ func _spwan_car(lane_spawn: CarSpawnLane):
 	if spawn_point.origin == Vector3.ZERO:
 		return
 
-	var car := ai_car_scene.instantiate() as RayCastCar
+	var car := car_db.pick_random().instantiate() as RayCastCar
 	world.add_child(car)
 	car.global_transform = spawn_point
 

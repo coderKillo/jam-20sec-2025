@@ -1,12 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://7eh1kmaickso"]
+[gd_scene load_steps=23 format=3 uid="uid://7eh1kmaickso"]
 
 [ext_resource type="Script" uid="uid://gi24plob2g5t" path="res://game/levels/level.gd" id="1_ic1hw"]
 [ext_resource type="PackedScene" uid="uid://dhtgm0p476v1u" path="res://game/entities/player/player_car.tscn" id="2_ofauc"]
 [ext_resource type="PackedScene" uid="uid://c4yhlfprlddpi" path="res://game/world/camera/follow_camera.tscn" id="3_ofauc"]
 [ext_resource type="PackedScene" uid="uid://dfaep1h3ipi5j" path="res://game/world/city/street/road_4_intersection.tscn" id="6_e7nd3"]
 [ext_resource type="Material" uid="uid://dm157s57mfhfe" path="res://addons/kenney_prototype_tools/materials/dark/material_02.tres" id="8_e7nd3"]
+[ext_resource type="PackedScene" uid="uid://cjsbyrg3majab" path="res://game/entities/ai/vehicle/ambulance.tscn" id="8_s721g"]
 [ext_resource type="PackedScene" uid="uid://57mx3766ieox" path="res://game/world/city/street/road_straigt_long.tscn" id="9_asq6h"]
+[ext_resource type="PackedScene" uid="uid://bnis4hymujqcw" path="res://game/entities/ai/vehicle/delivery.tscn" id="9_eofeo"]
+[ext_resource type="PackedScene" uid="uid://c3e43go5luv0w" path="res://game/entities/ai/vehicle/firetruck.tscn" id="10_7mgrg"]
+[ext_resource type="PackedScene" uid="uid://8qav7lab4pfu" path="res://game/entities/ai/vehicle/sport.tscn" id="10_el3lh"]
 [ext_resource type="Script" uid="uid://cs8uiydfrswuq" path="res://game/entities/ai/ai_car_manager.gd" id="10_s721g"]
+[ext_resource type="PackedScene" uid="uid://cbkxprgxd06rv" path="res://game/entities/ai/vehicle/garbagetruck.tscn" id="11_vwsk4"]
+[ext_resource type="PackedScene" uid="uid://blo7uyr8d01jb" path="res://game/entities/ai/vehicle/police.tscn" id="12_imqor"]
+[ext_resource type="PackedScene" uid="uid://opbkppmsural" path="res://game/entities/ai/vehicle/sedan.tscn" id="13_ye13o"]
+[ext_resource type="PackedScene" uid="uid://bbc488dbkuwkf" path="res://game/entities/ai/vehicle/sedan_sport.tscn" id="14_ogktq"]
+[ext_resource type="PackedScene" uid="uid://fy2jnhpy73b7" path="res://game/entities/ai/vehicle/suv.tscn" id="16_0cf3l"]
+[ext_resource type="PackedScene" uid="uid://b6qsbwchndlpj" path="res://game/entities/ai/vehicle/suv_luxus.tscn" id="17_er76t"]
+[ext_resource type="PackedScene" uid="uid://tor2ju72k27o" path="res://game/entities/ai/vehicle/taxi.tscn" id="18_nhkjn"]
+[ext_resource type="PackedScene" uid="uid://dn2bsxx7rsvvr" path="res://game/entities/ai/vehicle/truck.tscn" id="19_dutcr"]
+[ext_resource type="PackedScene" uid="uid://ckel5u7mb1xfc" path="res://game/entities/ai/vehicle/truck_flat.tscn" id="20_4jljr"]
+[ext_resource type="PackedScene" uid="uid://doxb10ha1bmc2" path="res://game/entities/ai/vehicle/van.tscn" id="21_drlp2"]
 
 [sub_resource type="Environment" id="Environment_uom3c"]
 background_color = Color(0.723602, 0.531677, 0.804231, 1)
@@ -617,10 +631,10 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -271.1
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -246.891, 1.64546, 1.5955)
 turn_degrees = 25.0
 
-[node name="AiCarManager" type="Node3D" parent="." node_paths=PackedStringArray("world", "car_spawn")]
+[node name="AiCarManager" type="Node3D" parent="." node_paths=PackedStringArray("world")]
 script = ExtResource("10_s721g")
 world = NodePath("../World")
-car_spawn = NodePath("../World/Road/Road4Intersection")
 spawn_time = 0.2
+car_db = Array[PackedScene]([ExtResource("8_s721g"), ExtResource("9_eofeo"), ExtResource("10_7mgrg"), ExtResource("11_vwsk4"), ExtResource("12_imqor"), ExtResource("13_ye13o"), ExtResource("14_ogktq"), ExtResource("10_el3lh"), ExtResource("16_0cf3l"), ExtResource("17_er76t"), ExtResource("18_nhkjn"), ExtResource("19_dutcr"), ExtResource("20_4jljr"), ExtResource("21_drlp2")])
 
 [node name="Timer" type="Timer" parent="AiCarManager"]
