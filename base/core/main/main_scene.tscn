@@ -1,10 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6pacd4qux0r0"]
+[gd_scene load_steps=26 format=3 uid="uid://b6pacd4qux0r0"]
 
 [ext_resource type="Script" uid="uid://xwkwmj6gqkg7" path="res://base/core/main/main.gd" id="1_awp0h"]
 [ext_resource type="PackedScene" uid="uid://c4yhlfprlddpi" path="res://game/world/camera/follow_camera.tscn" id="2_b46tn"]
 [ext_resource type="PackedScene" uid="uid://7eh1kmaickso" path="res://game/levels/level.tscn" id="3_gjp0b"]
+[ext_resource type="Script" uid="uid://cege504k2lwxs" path="res://game/gui/gui.gd" id="5_es3kw"]
 [ext_resource type="PackedScene" uid="uid://dhtgm0p476v1u" path="res://game/entities/player/player_car.tscn" id="6_htuni"]
+[ext_resource type="Texture2D" uid="uid://cgc88sjkcef4g" path="res://assets/kenney_crosshair-pack/PNG/White/crosshair006.png" id="6_l3rmk"]
 [ext_resource type="Script" uid="uid://cs8uiydfrswuq" path="res://game/entities/ai/ai_car_manager.gd" id="7_57fuq"]
+[ext_resource type="Texture2D" uid="uid://cr6nvfpito73r" path="res://assets/kenney_crosshair-pack/PNG/White/crosshair048.png" id="7_l3rmk"]
 [ext_resource type="PackedScene" uid="uid://cjsbyrg3majab" path="res://game/entities/ai/vehicle/ambulance.tscn" id="8_hhr1e"]
 [ext_resource type="PackedScene" uid="uid://bnis4hymujqcw" path="res://game/entities/ai/vehicle/delivery.tscn" id="9_5r02l"]
 [ext_resource type="PackedScene" uid="uid://c3e43go5luv0w" path="res://game/entities/ai/vehicle/firetruck.tscn" id="10_cgvbc"]
@@ -32,7 +35,13 @@ fog_enabled = true
 fog_light_color = Color(0.558616, 0.693363, 0.907367, 1)
 fog_density = 0.1
 
-[node name="MainScene" type="Control" node_paths=PackedStringArray("level_container", "gui")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b46tn"]
+bg_color = Color(0.5412, 0.82, 0.685247, 0.352941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es3kw"]
+bg_color = Color(0.891664, 0.530229, 0.619882, 0.745098)
+
+[node name="MainScene" type="Control" node_paths=PackedStringArray("world", "gui", "follow_camera")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,8 +50,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_awp0h")
-level_container = NodePath("")
+world = NodePath("World")
 gui = NodePath("CanvasLayer/Gui")
+follow_camera = NodePath("World/FollowCamera")
 
 [node name="World" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 430, 175, 0)
@@ -66,11 +76,16 @@ environment = SubResource("Environment_uom3c")
 [node name="FollowCamera" parent="World" node_paths=PackedStringArray("follow_target") instance=ExtResource("2_b46tn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -439.699, -170.555, 0)
 follow_target = NodePath("../PlayerCar")
+camera_height = 1.0
+camera_aim_offset = 1.0
+camera_distance_aim = 1.0
+camera_look_ahead_aim = 100.0
+camera_aim_damping = 5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Gui" type="Control" parent="CanvasLayer"]
+[node name="Gui" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("_timer", "_progress_bar", "_crosshair")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,12 +93,70 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("5_es3kw")
+_timer = NodePath("Timer")
+_progress_bar = NodePath("ProgressBar")
+_crosshair = NodePath("Crosshair")
 
-[node name="Label" type="Label" parent="CanvasLayer/Gui"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Healt: 100"
+[node name="Timer" type="Label" parent="CanvasLayer/Gui"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_top = 11.0
+offset_right = 22.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "0:00"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Gui"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.5
+offset_top = -55.0
+offset_right = 117.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_b46tn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_es3kw")
+max_value = 1.0
+value = 0.4
+show_percentage = false
+
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer/Gui"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_l3rmk")
+expand_mode = 1
+
+[node name="Valid" type="TextureRect" parent="CanvasLayer/Gui/Crosshair"]
+visible = false
+modulate = Color(0, 0.88, 0.425333, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_l3rmk")
+expand_mode = 1
 
 [node name="AiCarManager" type="Node3D" parent="." node_paths=PackedStringArray("world")]
 script = ExtResource("7_57fuq")
