@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Jam-Template"
+config/name="Crazy Chrismas Rally"
 config/description="s"
 config/version="0.0.1"
-run/main_scene="uid://7eh1kmaickso"
+run/main_scene="uid://b6pacd4qux0r0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

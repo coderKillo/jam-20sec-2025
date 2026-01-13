@@ -68,20 +68,10 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Continue" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Continue"
-
 [node name="NewGame" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "New Game"
-
-[node name="LevelSelect" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Select Level"
 
 [node name="Options" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -286,10 +276,3 @@ offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "0.0.0"
-
-[node name="ConfimNewGame" type="ConfirmationDialog" parent="."]
-auto_translate_mode = 1
-title = "New Game"
-position = Vector2i(0, 36)
-size = Vector2i(418, 100)
-dialog_text = "Starting a new game will reset all game data."

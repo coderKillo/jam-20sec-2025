@@ -1,6 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6pacd4qux0r0"]
+[gd_scene load_steps=21 format=3 uid="uid://b6pacd4qux0r0"]
 
 [ext_resource type="Script" uid="uid://xwkwmj6gqkg7" path="res://base/core/main/main.gd" id="1_awp0h"]
+[ext_resource type="PackedScene" uid="uid://c4yhlfprlddpi" path="res://game/world/camera/follow_camera.tscn" id="2_b46tn"]
+[ext_resource type="PackedScene" uid="uid://7eh1kmaickso" path="res://game/levels/level.tscn" id="3_gjp0b"]
+[ext_resource type="PackedScene" uid="uid://dhtgm0p476v1u" path="res://game/entities/player/player_car.tscn" id="6_htuni"]
+[ext_resource type="Script" uid="uid://cs8uiydfrswuq" path="res://game/entities/ai/ai_car_manager.gd" id="7_57fuq"]
+[ext_resource type="PackedScene" uid="uid://cjsbyrg3majab" path="res://game/entities/ai/vehicle/ambulance.tscn" id="8_hhr1e"]
+[ext_resource type="PackedScene" uid="uid://bnis4hymujqcw" path="res://game/entities/ai/vehicle/delivery.tscn" id="9_5r02l"]
+[ext_resource type="PackedScene" uid="uid://c3e43go5luv0w" path="res://game/entities/ai/vehicle/firetruck.tscn" id="10_cgvbc"]
+[ext_resource type="PackedScene" uid="uid://cbkxprgxd06rv" path="res://game/entities/ai/vehicle/garbagetruck.tscn" id="11_kyaiq"]
+[ext_resource type="PackedScene" uid="uid://blo7uyr8d01jb" path="res://game/entities/ai/vehicle/police.tscn" id="12_slhpv"]
+[ext_resource type="PackedScene" uid="uid://opbkppmsural" path="res://game/entities/ai/vehicle/sedan.tscn" id="13_jug8x"]
+[ext_resource type="PackedScene" uid="uid://bbc488dbkuwkf" path="res://game/entities/ai/vehicle/sedan_sport.tscn" id="14_7yyto"]
+[ext_resource type="PackedScene" uid="uid://8qav7lab4pfu" path="res://game/entities/ai/vehicle/sport.tscn" id="15_lfysj"]
+[ext_resource type="PackedScene" uid="uid://fy2jnhpy73b7" path="res://game/entities/ai/vehicle/suv.tscn" id="16_y60e0"]
+[ext_resource type="PackedScene" uid="uid://b6qsbwchndlpj" path="res://game/entities/ai/vehicle/suv_luxus.tscn" id="17_bajmv"]
+[ext_resource type="PackedScene" uid="uid://tor2ju72k27o" path="res://game/entities/ai/vehicle/taxi.tscn" id="18_tjkco"]
+[ext_resource type="PackedScene" uid="uid://dn2bsxx7rsvvr" path="res://game/entities/ai/vehicle/truck.tscn" id="19_4x2xe"]
+[ext_resource type="PackedScene" uid="uid://ckel5u7mb1xfc" path="res://game/entities/ai/vehicle/truck_flat.tscn" id="20_lpw87"]
+[ext_resource type="PackedScene" uid="uid://doxb10ha1bmc2" path="res://game/entities/ai/vehicle/van.tscn" id="21_8pjgt"]
+
+[sub_resource type="Environment" id="Environment_uom3c"]
+background_color = Color(0.723602, 0.531677, 0.804231, 1)
+background_energy_multiplier = 0.16
+ambient_light_source = 3
+ambient_light_color = Color(7.70092e-07, 0.5786, 0.907807, 1)
+ambient_light_energy = 0.33
+reflected_light_source = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.558616, 0.693363, 0.907367, 1)
+fog_density = 0.1
 
 [node name="MainScene" type="Control" node_paths=PackedStringArray("level_container", "gui")]
 layout_mode = 3
@@ -11,11 +41,31 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_awp0h")
-level_container = NodePath("World")
+level_container = NodePath("")
 gui = NodePath("CanvasLayer/Gui")
 
-[node name="World" type="Node2D" parent="."]
-position = Vector2(430, 175)
+[node name="World" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 430, 175, 0)
+
+[node name="PlayerCar" parent="World" instance=ExtResource("6_htuni")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -676.891, -173.355, 1.5955)
+turn_degrees = 25.0
+
+[node name="Level" parent="World" instance=ExtResource("3_gjp0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -430, -175, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.636172, 3.37254e-08, -0.771547, 0.771547, -2.7808e-08, 0.636172, 0, -1, -4.37114e-08, -472.984, -147.268, 7.33537)
+shadow_enabled = true
+shadow_opacity = 0.53
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_uom3c")
+
+[node name="FollowCamera" parent="World" node_paths=PackedStringArray("follow_target") instance=ExtResource("2_b46tn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -439.699, -170.555, 0)
+follow_target = NodePath("../PlayerCar")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -34,3 +84,11 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Healt: 100"
+
+[node name="AiCarManager" type="Node3D" parent="." node_paths=PackedStringArray("world")]
+script = ExtResource("7_57fuq")
+world = NodePath("../World")
+spawn_time = 0.2
+car_db = Array[PackedScene]([ExtResource("8_hhr1e"), ExtResource("9_5r02l"), ExtResource("10_cgvbc"), ExtResource("11_kyaiq"), ExtResource("12_slhpv"), ExtResource("13_jug8x"), ExtResource("14_7yyto"), ExtResource("15_lfysj"), ExtResource("16_y60e0"), ExtResource("17_bajmv"), ExtResource("18_tjkco"), ExtResource("19_4x2xe"), ExtResource("20_lpw87"), ExtResource("21_8pjgt")])
+
+[node name="Timer" type="Timer" parent="AiCarManager"]
