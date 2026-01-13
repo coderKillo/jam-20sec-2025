@@ -79,11 +79,20 @@ func _spwan_car(lane_spawn: CarSpawnLane):
 	if spawn_point.origin == Vector3.ZERO:
 		return
 
-	var car := car_db.pick_random().instantiate() as RayCastCar
+	var car := _pick_car().instantiate()
 	world.add_child(car)
 	car.global_transform = spawn_point
+
+	var tree: TreeComponent = TreeComponent.get_tree_component(car)
+	if tree:
+		#TODO: add probability to spawn tree
+		tree.set_tree(randi() % 2 == 0)
 
 	var controller: AiCarController = car.get_node("AiCarController")
 	controller.start_position = car.global_position
 	controller.target_position = car.global_position + 1000.0 * (-car.global_basis.z)
 	_controllers.append(controller)
+
+
+func _pick_car() -> PackedScene:
+	return car_db.pick_random()

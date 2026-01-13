@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=4 uid="uid://dn2bsxx7rsvvr"]
+[gd_scene load_steps=18 format=4 uid="uid://dn2bsxx7rsvvr"]
 
 [ext_resource type="PackedScene" uid="uid://sc7luka4o5l2" path="res://game/entities/ai/ai_car.tscn" id="1_b7ymv"]
 [ext_resource type="Texture2D" uid="uid://bualmbnhgephh" path="res://assets/models/kenney_car-kit/Models/GLB format/Textures/colormap.png" id="2_jt6em"]
+[ext_resource type="PackedScene" uid="uid://dnjfw1khw4ged" path="res://game/entities/ai/tree_component.tscn" id="3_jt6em"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b7ymv"]
 size = Vector3(0.938993, 0.998096, 0.69187)
@@ -233,3 +234,6 @@ skeleton = NodePath("")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.148459, 0.0477947)
 mesh = SubResource("ArrayMesh_1sg66")
 skeleton = NodePath("")
+
+[node name="TreeComponent" parent="." index="8" instance=ExtResource("3_jt6em")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.886047, 0.490234)
