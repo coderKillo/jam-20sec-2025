@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnjfw1khw4ged"]
+[gd_scene load_steps=4 format=3 uid="uid://dnjfw1khw4ged"]
 
 [ext_resource type="Script" uid="uid://dxduwymmjvmf7" path="res://game/entities/ai/tree_component.gd" id="1_3x4u0"]
 [ext_resource type="PackedScene" uid="uid://dyrwviyuaxd5k" path="res://game/world/objects/tree.tscn" id="2_d4643"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8uv6"]
+radius = 0.627639
+height = 2.61837
 
 [node name="TreeComponent" type="Node3D"]
 script = ExtResource("1_3x4u0")
 
 [node name="Tree" parent="." instance=ExtResource("2_d4643")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00819111, -0.135861, -0.118371)
+shape = SubResource("CapsuleShape3D_u8uv6")

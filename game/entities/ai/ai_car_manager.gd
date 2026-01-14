@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var world: Node3D
+@export var player: Player
 
 @export_category("Settings")
 @export var car_amount = 20
@@ -9,21 +10,41 @@ extends Node3D
 @export var spawn_distance_out_of_view: float = 10.0
 @export var spawn_angle_to_player: float = 80.0
 
-@export_category("Database")
-@export var car_db: Array[PackedScene]
+#TODO: optimize spawn by pooling
+#TODO: imporve ratio
+
+@onready var car_db: Array = [
+	{spawn_ratio = 1, scene = preload("res://game/entities/ai/vehicle/ambulance.tscn")},
+	{spawn_ratio = 3, scene = preload("res://game/entities/ai/vehicle/delivery.tscn")},
+	{spawn_ratio = 1, scene = preload("res://game/entities/ai/vehicle/firetruck.tscn")},
+	{spawn_ratio = 2, scene = preload("res://game/entities/ai/vehicle/garbagetruck.tscn")},
+	{spawn_ratio = 5, scene = preload("res://game/entities/ai/vehicle/police.tscn")},
+	{spawn_ratio = 10, scene = preload("res://game/entities/ai/vehicle/sedan.tscn")},
+	{spawn_ratio = 5, scene = preload("res://game/entities/ai/vehicle/sedan_sport.tscn")},
+	{spawn_ratio = 10, scene = preload("res://game/entities/ai/vehicle/sport.tscn")},
+	{spawn_ratio = 15, scene = preload("res://game/entities/ai/vehicle/suv.tscn")},
+	{spawn_ratio = 5, scene = preload("res://game/entities/ai/vehicle/suv_luxus.tscn")},
+	{spawn_ratio = 3, scene = preload("res://game/entities/ai/vehicle/taxi.tscn")},
+	{spawn_ratio = 3, scene = preload("res://game/entities/ai/vehicle/truck.tscn")},
+	{spawn_ratio = 3, scene = preload("res://game/entities/ai/vehicle/truck_flat.tscn")},
+	{spawn_ratio = 5, scene = preload("res://game/entities/ai/vehicle/van.tscn")},
+]
 
 var _controllers: Array[AiCarController]
-var _player_car: RayCastCar
+var _max_spawn_ratio: int = 0
+var _cumulative_spawn_ratio: Array[int] = []
 
 
 func _ready():
 	assert(world)
+	assert(player)
 
 	$Timer.timeout.connect(_on_spawn_timer_timeout)
 	$Timer.start(spawn_time)
 
-	_player_car = world.get_node("PlayerCar") as RayCastCar
-	assert(_player_car)
+	for entry in car_db:
+		_max_spawn_ratio += entry.spawn_ratio
+		_cumulative_spawn_ratio.append(_max_spawn_ratio)
 
 
 func _on_spawn_timer_timeout():
@@ -44,8 +65,8 @@ func _on_spawn_timer_timeout():
 
 
 func _in_player_view(node: Node3D) -> bool:
-	var direction = _player_car.global_position.direction_to(node.global_position)
-	var car_forward = -_player_car.global_basis.z
+	var direction = player.global_position.direction_to(node.global_position)
+	var car_forward = -player.global_basis.z
 
 	# Project onto XZ plane
 	direction.y = 0.0
@@ -58,7 +79,7 @@ func _in_player_view(node: Node3D) -> bool:
 
 
 func _distance_to_player(node: Node3D) -> float:
-	return _player_car.global_position.distance_to(node.global_position)
+	return player.global_position.distance_to(player.global_position)
 
 
 func _despawn_cars():
@@ -88,11 +109,15 @@ func _spwan_car(lane_spawn: CarSpawnLane):
 		#TODO: add probability to spawn tree
 		tree.set_tree(randi() % 2 == 0)
 
-	var controller: AiCarController = car.get_node("AiCarController")
+	var controller := AiCarController.get_controller(car)
 	controller.start_position = car.global_position
 	controller.target_position = car.global_position + 1000.0 * (-car.global_basis.z)
 	_controllers.append(controller)
 
 
 func _pick_car() -> PackedScene:
-	return car_db.pick_random()
+	var random_number := randi_range(0, _max_spawn_ratio)
+	for i in range(_cumulative_spawn_ratio.size()):
+		if random_number < _cumulative_spawn_ratio[i]:
+			return car_db[i].scene
+	return car_db.pick_random().scene

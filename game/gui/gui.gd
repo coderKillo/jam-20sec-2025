@@ -19,7 +19,7 @@ func set_timer(value: int) -> void:
 func set_progress_bar(value: float) -> void:
 	value = clamp(value, 0.0, 1.0)
 	_progress_bar.value = value
-	_progress_bar.visible = value > 0.0
+	_progress_bar.visible = value > 0.0 && value < 1.0
 
 
 func set_target_valid(valid: bool) -> void:

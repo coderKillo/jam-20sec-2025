@@ -11,6 +11,7 @@ extends Node3D
 var start_position := Vector3.ZERO
 var target_position := Vector3.FORWARD * 100.0
 var speed: float
+var active := false
 
 var _interests: Array[RayCast3D]
 var _distance_checker: RayCast3D
@@ -26,6 +27,9 @@ func _ready():
 
 
 func _process(_delta):
+	if not active:
+		return
+
 	car.motor_input = 0.0
 
 	if is_on_goal_position():
@@ -102,3 +106,10 @@ func _get_closest_point_on_lane() -> Vector3:
 	var lane_direction := start_position.direction_to(target_position)
 	var look_ahead_point := closest_point + distance_look_ahead * lane_direction
 	return look_ahead_point
+
+
+static func get_controller(node: Node3D) -> AiCarController:
+	var controller: AiCarController = node.get_node("AiCarController") as AiCarController
+	if controller:
+		return controller
+	return null

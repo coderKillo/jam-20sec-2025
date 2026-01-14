@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=4 uid="uid://dhtgm0p476v1u"]
+[gd_scene load_steps=17 format=4 uid="uid://dhtgm0p476v1u"]
 
 [ext_resource type="Script" uid="uid://ct0wfkng0uvkm" path="res://game/entities/player/player.gd" id="1_fsf16"]
-[ext_resource type="Curve" uid="uid://drlvneshdn3u5" path="res://game/entities/car/curves/default_acceleration.tres" id="2_cj67x"]
 [ext_resource type="Texture2D" uid="uid://bnuxvk1tci1be" path="res://assets/models/kenney_car-kit/Models/FBX format/Textures/colormap.png" id="3_5r5an"]
 [ext_resource type="Script" uid="uid://b2cq3p2qqcr55" path="res://game/entities/car/ray_cast_wheel.gd" id="4_ac4b2"]
 
@@ -187,15 +186,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ihorn")
 
-[node name="PlayerCar" type="RigidBody3D" node_paths=PackedStringArray("wheels")]
+[node name="PlayerCar" type="RigidBody3D"]
 mass = 25.0
 center_of_mass_mode = 1
 script = ExtResource("1_fsf16")
-wheels = [NodePath("WheelFrontLeft"), NodePath("WheelFrontRight"), NodePath("WheelBackLeft"), NodePath("WheelBackRight")]
-max_speed = 30.0
-acceleration = 400.0
-acceleration_curve = ExtResource("2_cj67x")
-center_of_mass_offset = 0.5
 
 [node name="body" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.188257, 0.00194201)

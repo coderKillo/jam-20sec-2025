@@ -29,15 +29,19 @@ var _look_ahead := 0.0
 var _aim := false
 
 
-func get_aim_target(distance: float) -> Node3D:
+func get_aim_target(distance: float, body: bool = true, collision_mask: int = 0x01) -> Node3D:
 	var screen_center := get_viewport().get_visible_rect().size * 0.5
 	var ray_origin: Vector3 = camera.project_ray_origin(screen_center)
 	var ray_end: Vector3 = ray_origin + camera.project_ray_normal(screen_center) * distance
 
 	var space_state := get_world_3d().direct_space_state
-	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-	query.collide_with_areas = false
-	query.collide_with_bodies = true
+	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_end, collision_mask)
+	query.collide_with_areas = not body
+	query.collide_with_bodies = body
+	if follow_target is Player:
+		query.exclude = [
+			follow_target.car, TreeComponent.get_tree_component(follow_target.car).area
+		]
 
 	var result := space_state.intersect_ray(query)
 	if result.size() > 0:
