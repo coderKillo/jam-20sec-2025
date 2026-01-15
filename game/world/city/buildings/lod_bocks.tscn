@@ -1,0 +1,117 @@
+[gd_scene load_steps=10 format=3 uid="uid://begvt0sub6td1"]
+
+[ext_resource type="PackedScene" uid="uid://bhww4tm3j5cfj" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-a.fbx" id="1_qn10s"]
+[ext_resource type="PackedScene" uid="uid://ccmahkh8p6vb2" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-r.fbx" id="2_4c1ld"]
+[ext_resource type="PackedScene" uid="uid://ok7ql7v6ype" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-c.fbx" id="3_888w7"]
+[ext_resource type="PackedScene" uid="uid://m18n2j8m7w30" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-p.fbx" id="4_b7lbd"]
+[ext_resource type="PackedScene" uid="uid://7tt8s2a25ion" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-h.fbx" id="5_3lnfd"]
+[ext_resource type="PackedScene" uid="uid://byvy5efbickc1" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-j.fbx" id="6_qg2tu"]
+[ext_resource type="PackedScene" uid="uid://crn21c8p44x33" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-o.fbx" id="7_gwbjn"]
+[ext_resource type="PackedScene" uid="uid://d2imy7u2bn00w" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-t.fbx" id="8_cwoft"]
+[ext_resource type="PackedScene" uid="uid://c6hs7tn7npsl3" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-f.fbx" id="9_f080i"]
+
+[node name="BlockLod" type="Node3D"]
+
+[node name="building-type-a" type="Node3D" parent="." instance=ExtResource("1_qn10s")]
+transform = Transform3D(-1.19209e-07, 0, 7.00001, 0, 7, 0, -7.00001, 0, -1.19209e-07, -4, 0, 0)
+metadata/asset_placer_res_id = "uid://bhww4tm3j5cfj"
+
+[node name="building-type-r" type="Node3D" parent="." instance=ExtResource("2_4c1ld")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -4, 0, 12)
+metadata/asset_placer_res_id = "uid://ccmahkh8p6vb2"
+
+[node name="building-type-a (1)" type="Node3D" parent="." instance=ExtResource("1_qn10s")]
+transform = Transform3D(8.34465e-07, 0, 7.00001, 0, 7, 0, -7.00001, 0, 8.34465e-07, -4, 0, -12)
+metadata/asset_placer_res_id = "uid://bhww4tm3j5cfj"
+
+[node name="building-type-c" type="Node3D" parent="." instance=ExtResource("3_888w7")]
+transform = Transform3D(-1.19209e-07, 0, 7.00001, 0, 7, 0, -7.00001, 0, -1.19209e-07, -4, 0, -24)
+metadata/asset_placer_res_id = "uid://ok7ql7v6ype"
+
+[node name="building-type-a (2)" type="Node3D" parent="." instance=ExtResource("1_qn10s")]
+transform = Transform3D(7.15256e-07, 0, 7, 0, 7, 0, -7, 0, 7.15256e-07, -4, 0, -40)
+metadata/asset_placer_res_id = "uid://bhww4tm3j5cfj"
+
+[node name="building-type-p" type="Node3D" parent="." instance=ExtResource("4_b7lbd")]
+transform = Transform3D(1.72853e-06, 0, 7.00001, 0, 7, 0, -7.00001, 0, 1.72853e-06, -4, 0, -52)
+metadata/asset_placer_res_id = "uid://m18n2j8m7w30"
+
+[node name="building-type-h" type="Node3D" parent="." instance=ExtResource("5_3lnfd")]
+transform = Transform3D(2.20537e-06, 0, 7, 0, 7, 0, -7, 0, 2.20537e-06, -4, 0, -64)
+metadata/asset_placer_res_id = "uid://7tt8s2a25ion"
+
+[node name="building-type-j" type="Node3D" parent="." instance=ExtResource("6_qg2tu")]
+transform = Transform3D(7.15256e-07, 0, 7, 0, 7, 0, -7, 0, 7.15256e-07, -4, 0, -80)
+metadata/asset_placer_res_id = "uid://byvy5efbickc1"
+
+[node name="building-type-j (1)" type="Node3D" parent="." instance=ExtResource("6_qg2tu")]
+transform = Transform3D(1.72853e-06, 0, 7.00001, 0, 7, 0, -7.00001, 0, 1.72853e-06, -4, 0, 24)
+metadata/asset_placer_res_id = "uid://byvy5efbickc1"
+
+[node name="building-type-o" type="Node3D" parent="." instance=ExtResource("7_gwbjn")]
+transform = Transform3D(7.7486e-07, 0, 7, 0, 7, 0, -7, 0, 7.7486e-07, -4, 0, 36)
+metadata/asset_placer_res_id = "uid://crn21c8p44x33"
+
+[node name="building-type-h (1)" type="Node3D" parent="." instance=ExtResource("5_3lnfd")]
+transform = Transform3D(1.84774e-06, 0, 7, 0, 7, 0, -7, 0, 1.84774e-06, -8, 0, 48)
+metadata/asset_placer_res_id = "uid://7tt8s2a25ion"
+
+[node name="building-type-t" type="Node3D" parent="." instance=ExtResource("8_cwoft")]
+transform = Transform3D(-1.90735e-06, 0, -7.00002, 0, 7, 0, 7.00002, 0, -1.90735e-06, -8, 0, 64)
+metadata/asset_placer_res_id = "uid://d2imy7u2bn00w"
+
+[node name="building-type-f" type="Node3D" parent="." instance=ExtResource("9_f080i")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -8, 0, 80)
+metadata/asset_placer_res_id = "uid://c6hs7tn7npsl3"
+
+[node name="building-type-a2" parent="." instance=ExtResource("1_qn10s")]
+transform = Transform3D(-5.28485e-07, 0, -7.00001, 0, 7, 0, -7, 0, 5.28486e-07, 13.7004, 0, -1.23077)
+metadata/asset_placer_res_id = "uid://bhww4tm3j5cfj"
+
+[node name="building-type-r2" parent="." instance=ExtResource("2_4c1ld")]
+transform = Transform3D(7, 0, -1.05697e-06, 0, 7, 0, -1.05697e-06, 0, -7, 13.7004, 0, -13.2308)
+metadata/asset_placer_res_id = "uid://ccmahkh8p6vb2"
+
+[node name="building-type-a (1)2" parent="." instance=ExtResource("1_qn10s")]
+transform = Transform3D(3.0598e-07, 0, -7.00001, 0, 7, 0, -7, 0, -3.0598e-07, 13.7004, 0, 10.7692)
+metadata/asset_placer_res_id = "uid://bhww4tm3j5cfj"
+
+[node name="building-type-c2" parent="." instance=ExtResource("3_888w7")]
+transform = Transform3D(-5.28485e-07, 0, -7.00001, 0, 7, 0, -7, 0, 5.28486e-07, 13.7004, 0, 22.7692)
+metadata/asset_placer_res_id = "uid://ok7ql7v6ype"
+
+[node name="building-type-a (2)2" parent="." instance=ExtResource("1_qn10s")]
+transform = Transform3D(-5.28485e-07, 0, -7, 0, 7, 0, -7, 0, 5.28486e-07, 13.7004, 0, 38.7692)
+metadata/asset_placer_res_id = "uid://bhww4tm3j5cfj"
+
+[node name="building-type-p2" parent="." instance=ExtResource("4_b7lbd")]
+transform = Transform3D(1.14044e-06, 0, -7.00001, 0, 7, 0, -7, 0, -1.14045e-06, 13.7004, 0, 50.7692)
+metadata/asset_placer_res_id = "uid://m18n2j8m7w30"
+
+[node name="building-type-h2" parent="." instance=ExtResource("5_3lnfd")]
+transform = Transform3D(1.14044e-06, 0, -7, 0, 7, 0, -7, 0, -1.14045e-06, 13.7004, 0, 62.7692)
+metadata/asset_placer_res_id = "uid://7tt8s2a25ion"
+
+[node name="building-type-j2" parent="." instance=ExtResource("6_qg2tu")]
+transform = Transform3D(-5.28485e-07, 0, -7, 0, 7, 0, -7, 0, 5.28486e-07, 13.7004, 0, 78.7692)
+metadata/asset_placer_res_id = "uid://byvy5efbickc1"
+
+[node name="building-type-j (1)2" parent="." instance=ExtResource("6_qg2tu")]
+transform = Transform3D(1.14044e-06, 0, -7.00001, 0, 7, 0, -7, 0, -1.14045e-06, 13.7004, 0, -25.2308)
+metadata/asset_placer_res_id = "uid://byvy5efbickc1"
+
+[node name="building-type-o2" parent="." instance=ExtResource("7_gwbjn")]
+transform = Transform3D(-5.28485e-07, 0, -7, 0, 7, 0, -7, 0, 5.28486e-07, 13.7004, 0, -37.2308)
+metadata/asset_placer_res_id = "uid://crn21c8p44x33"
+
+[node name="building-type-h (1)2" parent="." instance=ExtResource("5_3lnfd")]
+transform = Transform3D(1.14044e-06, 0, -7, 0, 7, 0, -7, 0, -1.14045e-06, 17.7004, 0, -49.2308)
+metadata/asset_placer_res_id = "uid://7tt8s2a25ion"
+
+[node name="building-type-t2" parent="." instance=ExtResource("8_cwoft")]
+transform = Transform3D(-1.36295e-06, 0, 7.00002, 0, 7, 0, 7, 0, 1.36295e-06, 17.7004, 0, -65.2308)
+metadata/asset_placer_res_id = "uid://d2imy7u2bn00w"
+
+[node name="building-type-f2" parent="." instance=ExtResource("9_f080i")]
+transform = Transform3D(7, 0, -1.05697e-06, 0, 7, 0, -1.05697e-06, 0, -7, 17.7004, 0, -81.2308)
+metadata/asset_placer_res_id = "uid://c6hs7tn7npsl3"

@@ -11,7 +11,7 @@ extends Node3D
 var start_position := Vector3.ZERO
 var target_position := Vector3.FORWARD * 100.0
 var speed: float
-var active := false
+var active := true
 
 var _interests: Array[RayCast3D]
 var _distance_checker: RayCast3D
