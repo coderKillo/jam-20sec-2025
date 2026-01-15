@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dcm1b332mei5o"]
+
+[ext_resource type="Shader" uid="uid://bpsa4nndccnsa" path="res://game/shader/snow-covered-surfaces.tres" id="1_7jutc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7jutc")

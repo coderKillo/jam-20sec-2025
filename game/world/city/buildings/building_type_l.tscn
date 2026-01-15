@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0bj55sxy4d4u"]
+
+[ext_resource type="PackedScene" uid="uid://tfwxrpxb57wo" path="res://assets/models/kenney_city-kit-suburban_20/Models/FBX format/Building/building-type-l.fbx" id="1_bdois"]
+[ext_resource type="Material" uid="uid://dcm1b332mei5o" path="res://game/materials/snow_covered_buildings.tres" id="2_scksc"]
+
+[sub_resource type="Environment" id="Environment_1chja"]
+background_color = Color(0.723602, 0.531677, 0.804231, 1)
+background_energy_multiplier = 0.16
+ambient_light_source = 3
+ambient_light_color = Color(7.70092e-07, 0.5786, 0.907807, 1)
+ambient_light_energy = 0.33
+reflected_light_source = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.558616, 0.693363, 0.907367, 1)
+fog_density = 0.1
+
+[node name="building-type-l" instance=ExtResource("1_bdois")]
+
+[node name="building-type-l" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_scksc")
+
+[node name="Camera3D" type="Camera3D" parent="." index="1"]
+transform = Transform3D(-0.866025, -0.219546, 0.449221, -1.49012e-08, 0.898442, 0.439093, -0.5, 0.380265, -0.778073, 0.520028, 1.14531, -1.23593)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2"]
+environment = SubResource("Environment_1chja")

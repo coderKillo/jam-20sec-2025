@@ -17,6 +17,10 @@ run/main_scene="uid://b6pacd4qux0r0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[asset_placer]
+
+internal/last_int=0
+
 [autoload]
 
 Events="*res://base/autoload/events.gd"

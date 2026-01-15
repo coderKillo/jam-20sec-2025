@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6pacd4qux0r0"]
+[gd_scene load_steps=15 format=3 uid="uid://b6pacd4qux0r0"]
 
 [ext_resource type="Script" uid="uid://xwkwmj6gqkg7" path="res://base/core/main/main.gd" id="1_awp0h"]
 [ext_resource type="PackedScene" uid="uid://c4yhlfprlddpi" path="res://game/world/camera/follow_camera.tscn" id="2_b46tn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cege504k2lwxs" path="res://game/gui/gui.gd" id="5_es3kw"]
 [ext_resource type="Script" uid="uid://ct0wfkng0uvkm" path="res://game/entities/player/player.gd" id="5_ugwa6"]
 [ext_resource type="Texture2D" uid="uid://cgc88sjkcef4g" path="res://assets/kenney_crosshair-pack/PNG/White/crosshair006.png" id="6_l3rmk"]
+[ext_resource type="Shader" uid="uid://bpsa4nndccnsa" path="res://game/shader/snow-covered-surfaces.tres" id="6_x0q8c"]
 [ext_resource type="Script" uid="uid://cs8uiydfrswuq" path="res://game/entities/ai/ai_car_manager.gd" id="7_57fuq"]
 [ext_resource type="Texture2D" uid="uid://cr6nvfpito73r" path="res://assets/kenney_crosshair-pack/PNG/White/crosshair048.png" id="7_l3rmk"]
 
@@ -21,6 +22,10 @@ glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.558616, 0.693363, 0.907367, 1)
 fog_density = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3p8nd"]
+render_priority = 0
+shader = ExtResource("6_x0q8c")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b46tn"]
 bg_color = Color(0.5412, 0.82, 0.685247, 0.352941)
@@ -50,6 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -430, -175, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
 transform = Transform3D(0.636172, 3.37254e-08, -0.771547, 0.771547, -2.7808e-08, 0.636172, 0, -1, -4.37114e-08, -472.984, -147.268, 7.33537)
+visible = false
 shadow_enabled = true
 shadow_opacity = 0.53
 directional_shadow_mode = 0
@@ -61,6 +67,7 @@ environment = SubResource("Environment_uom3c")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -439.699, -170.555, 0)
 follow_target = NodePath("../Player")
 camera_height = 1.0
+camera_distance = 3.0
 camera_aim_offset = 1.0
 camera_distance_aim = 1.0
 camera_look_ahead_aim = 100.0
@@ -75,6 +82,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -629.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1033, 0, 0)
 script = ExtResource("5_ugwa6")
 start_car = NodePath("../AiCar")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -443.866, -174.163, 0)
+material_overlay = SubResource("ShaderMaterial_3p8nd")
+size = Vector3(4.31067, 1, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
